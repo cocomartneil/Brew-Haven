@@ -52,12 +52,11 @@ if (isset($_ENV['DATABASE_URL'])) {
 
 // Set CORS headers for React app
 header('Content-Type: application/json');
-// Allow both local development and Netlify deployment
-$allowed_origins = [
-    'http://localhost:5173',  // Local development
-    'https://your-netlify-app.netlify.app',  // Replace with your actual Netlify URL
-    'https://brew-haven.netlify.app'  // Example Netlify URL
-];
+    // Allow both local development and Netlify deployment
+    $allowed_origins = [
+        'http://localhost:5173',  // Local development
+        'https://brewhaventabernilla.netlify.app'  // Your actual Netlify URL
+    ];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if (in_array($origin, $allowed_origins)) {
     header('Access-Control-Allow-Origin: ' . $origin);
