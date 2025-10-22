@@ -9,13 +9,18 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    libpq-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions (MySQL only for now)
+# Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
+
+# Install PostgreSQL PDO extension
+RUN docker-php-ext-configure pdo_pgsql --with-pdo-pgsql && \
+    docker-php-ext-install pdo_pgsql
 
 # Set working directory
 WORKDIR /var/www/html

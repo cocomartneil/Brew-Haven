@@ -12,17 +12,16 @@ if (isset($_ENV['DATABASE_URL'])) {
     $dbname = ltrim($url['path'], '/');
     $username = $url['user'];
     $password = $url['pass'];
-    $port = $url['port'] ?? 3306; // MySQL default port
-    $host = $host . ':' . $port;
+    $port = $url['port'] ?? 5432; // PostgreSQL default port
     
-    // Use MySQL connection string
+    // Use PostgreSQL connection string
     try {
-        $pdo = new PDO("mysql:host=" . $url['host'] . ";port=" . $port . ";dbname=" . $dbname, $username, $password);
+        $pdo = new PDO("pgsql:host=" . $url['host'] . ";port=" . $port . ";dbname=" . $dbname, $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         http_response_code(500);
-        echo json_encode(['error' => 'MySQL connection failed: ' . $e->getMessage()]);
+        echo json_encode(['error' => 'PostgreSQL connection failed: ' . $e->getMessage()]);
         exit();
     }
 } else {
