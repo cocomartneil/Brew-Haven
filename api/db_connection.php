@@ -12,18 +12,30 @@ if (isset($_ENV['DATABASE_URL'])) {
     $dbname = ltrim($url['path'], '/');
     $username = $url['user'];
     $password = $url['pass'];
-    $port = $url['port'] ?? 3306;
+    $port = $url['port'] ?? 5432; // PostgreSQL default port
     $host = $host . ':' . $port;
-}
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
-    exit();
+    
+    // Use PostgreSQL connection string
+    try {
+        $pdo = new PDO("pgsql:host=" . $url['host'] . ";port=" . $port . ";dbname=" . $dbname, $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        http_response_code(500);
+        echo json_encode(['error' => 'PostgreSQL connection failed: ' . $e->getMessage()]);
+        exit();
+    }
+} else {
+    // Local MySQL connection
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        http_response_code(500);
+        echo json_encode(['error' => 'MySQL connection failed: ' . $e->getMessage()]);
+        exit();
+    }
 }
 
 // Set CORS headers for React app
