@@ -1,0 +1,13 @@
+# Render configuration for Docker deployment
+services:
+  - type: web
+    name: brew-haven-backend
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /test.php
+    envVars:
+      - key: PHP_VERSION
+        value: 8.2
+      - key: PORT
+        value: 80

@@ -1,0 +1,37 @@
+# Docker Compose for local development and testing
+version: '3.8'
+
+services:
+  # PHP Backend
+  php-backend:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - PHP_VERSION=8.2
+      - DB_HOST=mysql
+      - MYSQL_DATABASE=brew_haven_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    depends_on:
+      - mysql
+    volumes:
+      - ./api:/var/www/html
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=brew_haven_db
+      - MYSQL_USER=brew_haven_user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database_setup_production.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  mysql_data:
