@@ -28,6 +28,9 @@ WORKDIR /var/www/html
 # Copy PHP files to the web root
 COPY api/ /var/www/html/
 
+# Copy database setup files
+COPY database_setup_postgresql.sql /var/www/html/
+
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod -R 755 /var/www/html
