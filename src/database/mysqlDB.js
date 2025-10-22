@@ -1,8 +1,10 @@
 // MySQL Database connection and operations
 class MySQLDatabase {
   constructor() {
-    // Use environment variable for API URL, fallback to localhost for development
-    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost/LabAct/api';
+    // Use production API URL for deployed app, fallback to localhost for development
+    this.baseURL = window.location.hostname === 'brewhaventabernilla.netlify.app' 
+      ? 'https://brew-haven-backend-1pwd.onrender.com/api'
+      : 'http://localhost/LabAct/api';
   }
 
   // Generic API call method
