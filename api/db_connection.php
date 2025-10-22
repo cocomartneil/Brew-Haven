@@ -14,15 +14,28 @@ if (isset($_ENV['DATABASE_URL'])) {
     $password = $url['pass'];
     $port = $url['port'] ?? 5432; // PostgreSQL default port
     
-    // Use PostgreSQL connection string
+    // Use PostgreSQL connection string with SSL
     try {
-        $pdo = new PDO("pgsql:host=" . $url['host'] . ";port=" . $port . ";dbname=" . $dbname, $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $dsn = "pgsql:host=" . $url['host'] . ";port=" . $port . ";dbname=" . $dbname . ";sslmode=require";
+        $pdo = new PDO($dsn, $username, $password, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false
+        ]);
     } catch (PDOException $e) {
-        http_response_code(500);
-        echo json_encode(['error' => 'PostgreSQL connection failed: ' . $e->getMessage()]);
-        exit();
+        // Try without SSL if SSL fails
+        try {
+            $dsn = "pgsql:host=" . $url['host'] . ";port=" . $port . ";dbname=" . $dbname . ";sslmode=disable";
+            $pdo = new PDO($dsn, $username, $password, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false
+            ]);
+        } catch (PDOException $e2) {
+            http_response_code(500);
+            echo json_encode(['error' => 'PostgreSQL connection failed: ' . $e2->getMessage()]);
+            exit();
+        }
     }
 } else {
     // Local MySQL connection
