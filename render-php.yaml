@@ -1,0 +1,14 @@
+# Render configuration for PHP backend
+# This file tells Render to use PHP instead of Node.js
+
+# PHP Runtime Configuration
+PHP_VERSION=8.2
+
+# Build Configuration
+BUILD_COMMAND=echo "No build needed for PHP"
+
+# Start Configuration  
+START_COMMAND=php -S 0.0.0.0:$PORT -t api
+
+# Health Check
+HEALTH_CHECK_PATH=/test.php

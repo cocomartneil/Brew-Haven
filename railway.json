@@ -1,0 +1,15 @@
+# Railway configuration for PHP backend
+# This file helps Railway understand your PHP setup
+
+# PHP Version
+PHP_VERSION=8.2
+
+# Document Root (where PHP files are served from)
+DOCUMENT_ROOT=api
+
+# Enable PHP extensions
+PHP_EXTENSIONS=pdo,pdo_mysql,json,mbstring
+
+# Error reporting for development
+PHP_DISPLAY_ERRORS=1
+PHP_LOG_ERRORS=1
