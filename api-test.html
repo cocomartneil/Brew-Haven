@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Connection Test</h1>
+    <button onclick="testDirectBackend()">Test Direct Backend</button>
+    <button onclick="testNetlifyProxy()">Test Netlify Proxy</button>
+    <div id="results"></div>
+
+    <script>
+        function testDirectBackend() {
+            fetch('https://brew-haven-backend-1pwd.onrender.com/api/test.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('results').innerHTML = '<h3>Direct Backend:</h3><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                })
+                .catch(error => {
+                    document.getElementById('results').innerHTML = '<h3>Direct Backend Error:</h3><pre>' + error.message + '</pre>';
+                });
+        }
+
+        function testNetlifyProxy() {
+            fetch('/api/test.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('results').innerHTML = '<h3>Netlify Proxy:</h3><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                })
+                .catch(error => {
+                    document.getElementById('results').innerHTML = '<h3>Netlify Proxy Error:</h3><pre>' + error.message + '</pre>';
+                });
+        }
+    </script>
+</body>
+</html>
