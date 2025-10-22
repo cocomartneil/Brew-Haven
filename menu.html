@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,
+initial-scale=1.0" />
+    <title>Menu - Brew Haven</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">Brew Haven</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html" class="active">Menu</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <section class="menu-section">
+      <h2 class="fade-in">Coffee</h2>
+      <div class="menu-grid">
+        <div class="menu-item fade-in">
+          <img
+            src="https://www.drinksupercoffee.com/cdn/shop/articles/fae84ed5-a18c-
+4da8-95d8-d38d576fa3b1_latte_2a0c8c48-b26b-48a0-8079-
+
+f999ed9fa3fd.jpg?v=1746120400&width=2048"
+            alt="Latte" />
+          <h3>Latte</h3>
+          <p>₱150</p>
+          <a href="order.php?drink=Coffee">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+        <div class="menu-item fade-in">
+          <img
+            src="https://encrypted-
+tbn0.gstatic.com/images?q=tbn:ANd9GcS9XAW2dKjfyKedMHS0RCpElyziMJxhllI6lw&s"
+            alt="Cappuccino" />
+          <h3>Cappuccino</h3>
+          <p>₱140</p>
+          <a href="order.php?drink=Cappuccino">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+        <div class="menu-item fade-in">
+          <img
+            src="https://encrypted-
+tbn0.gstatic.com/images?q=tbn:ANd9GcS45G_1ozrE9F_T-SypEA4sF36UkFVgZe6gzA&s"
+            alt="Americano" />
+          <h3>Americano</h3>
+          <p>₱120</p>
+          <a href="order.php?drink=Americano">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+      </div>
+      <h2 class="fade-in">Non-Coffee</h2>
+      <div class="menu-grid">
+        <div class="menu-item fade-in">
+          <img
+            src="https://encrypted-
+tbn0.gstatic.com/images?q=tbn:ANd9GcQnurlPAU_aWo5JU6M5OrP1aPhOjiPZkopKEw&s"
+            alt="Hot Chocolate" />
+          <h3>Hot Chocolate</h3>
+          <p>₱130</p>
+          <a href="order.php?drink=Hot Chocolate">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+
+        <div class="menu-item fade-in">
+          <img
+            src="https://encrypted-
+tbn0.gstatic.com/images?q=tbn:ANd9GcTGWtPrzyApvXV1So996Ps47hPNNVWepasLVQ&s"
+            alt="Matcha Latte" />
+          <h3>Matcha Latte</h3>
+          <p>₱160</p>
+          <a href="order.php?drink=Matcha Latte">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+        <div class="menu-item fade-in">
+          <img
+            src="https://encrypted-
+tbn0.gstatic.com/images?q=tbn:ANd9GcRcaq2qG1TY5Q-kA47PXe_zu9WoGHK60hMMiA&s"
+            alt="Chai Tea" />
+          <h3>Chai Tea</h3>
+          <p>₱90</p>
+          <a href="order.php?drink=Chai Tea">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+      </div>
+      <h2 class="fade-in">Pastries</h2>
+      <div class="menu-grid">
+        <div class="menu-item fade-in">
+          <img
+            src="https://encrypted-
+tbn0.gstatic.com/images?q=tbn:ANd9GcT1WSvxGW7cWoovgmg_f2EDI3gfAdPnCZ4-Ig&s"
+            alt="Croissant" />
+          <h3>Croissant</h3>
+          <p>₱70</p>
+          <a href="order.php?drink=Croissant">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+        <div class="menu-item fade-in">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTruV-
+37quTOjX3lC3QZSkaIzc-6jvs8nzUQ&s"
+            alt="Muffin" />
+
+          <h3>Blueberry Muffin</h3>
+          <p>₱85</p>
+          <a href="order.html?drink=Muffin">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+        <div class="menu-item fade-in">
+          <img
+            src="https://encrypted-
+tbn0.gstatic.com/images?q=tbn:ANd9GcRd_0WyGPI3T7ghv6f8YPk1Xg1MiXzVgJVH-w&s"
+            alt="Cheesecake" />
+          <h3>Cheesecake</h3>
+          <p>₱150</p>
+          <a href="order.php?drink=Cheesecake">
+            <button class="order-button">Order Now</button>
+          </a>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>&copy; 2025 Cozy Coffee. All rights reserved.</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const faders = document.querySelectorAll(".fade-in");
+        const appearOptions = {
+          threshold: 0.2,
+        };
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          });
+        }, appearOptions);
+        faders.forEach((fader) => {
+          appearOnScroll.observe(fader);
+        });
+      });
+    </script>
+  </body>
+</html>

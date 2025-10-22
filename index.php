@@ -1,0 +1,136 @@
+<?php
+session_start();
+?>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew Haven Coffee Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo"> Brew Haven</div>
+        <nav>
+            <a href="index.php" class="active">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About</a>
+            <a href="contact.php">Contact</a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="logout.php" class="login-btn">Logout</a>
+            <?php else: ?>
+                <a href="login.php" class="login-btn">Login</a>
+            <?php endif; ?>
+        </nav>
+
+    </header>
+    <section class="hero">
+        <h1 class="fade-in">Wake Up & Smell the Coffee</h1>
+        <p class="fade-in">Serving freshly brewed happiness since 2025.</p>
+        <a href="menu.html" class="btn fade-in">View Menu</a>
+    </section>
+    <section class="menu-preview">
+        <h2>Our Favorites</h2>
+        <div class="menu-items">
+            <div class="item fade-in">
+                <!-- Espresso -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" alt="Espresso"
+                    loading="lazy">
+                <h3>Espresso</h3>
+                <p>Rich and bold shot of pure coffee bliss.</p>
+                <a href="order.php?drink=Espresso">
+                    <button class="order-button">Order Now</button>
+                </a>
+            </div>
+            <div class="item fade-in">
+                <!-- Cappuccino -->
+
+                <img src="https://encrypted-
+tbn0.gstatic.com/images?q=tbn:ANd9GcS9XAW2dKjfyKedMHS0RCpElyziMJxhllI6lw&s" alt="Cappuccino">
+                <h3>Cappuccino</h3>
+
+                <p>Perfect blend of espresso, steamed milk & foam.</p>
+                <a href="order.php?drink=Cappuccino">
+                    <button class="order-button">Order Now</button>
+                </a>
+            </div>
+            <div class="item fade-in">
+                <!-- Iced Latte -->
+                <img src="https://images.ctfassets.net/v601h1fyjgba/71VWCR6Oclk14tsdM9gTyM/6921cc6b2174
+6f62846c99fa6a872c35/Iced_Latte.jpg" alt="Iced Latte">
+                <h3>Iced Latte</h3>
+                <p>Chilled, creamy, and refreshingly smooth.</p>
+                <a href="order.php?drink=Iced Latte">
+                    <button class="order-button">Order Now</button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="specials">
+        <h2>Special of the Month</h2>
+        <div class="special-card fade-in">
+
+            <img src="https://www.munchkintime.com/wp-content/uploads/2024/09/Best-
+Pumpkin-Spice-Latte-Recipe-with-Coffee-11.jpg" alt="Pumpkin Spice Latte">
+            <div>
+                <h3>Pumpkin Spice Latte</h3>
+                <p>A seasonal favorite with warm spices and creamy goodness. Available hot or
+                    iced.</p>
+                <a href="order.php?drink=Pumpkin%20Spice%20Latte">
+                    <button class="order-button">Order Now</button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial fade-in">
+
+                <p>"Brew Haven has the coziest atmosphere and the friendliest baristas. The coffee
+                    is top notch!"</p>
+                <span>- Jhanes H.</span>
+            </div>
+            <div class="testimonial fade-in">
+                <p>"I come here every morning before work. Their cappuccino is simply the best in
+                    town."</p>
+                <span>- Jayson R.</span>
+            </div>
+            <div class="testimonial fade-in">
+                <p>"Perfect place to relax, read a book, and enjoy a pastry with my coffee."</p>
+                <span>- Rouel M.</span>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Brew Haven Coffee Shop</p>
+    </footer>
+    <script>
+        // Fade-in animation on scroll
+        document.addEventListener("DOMContentLoaded", () => {
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.2
+            };
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+        function goToOrder() {
+            window.location.href = "order.html";
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+services:
+  # PHP Backend Service
+  - type: web
+    name: brew-haven-backend
+    env: php
+    plan: free
+    buildCommand: echo "No build needed for PHP"
+    startCommand: php -S 0.0.0.0:$PORT -t api
+    envVars:
+      - key: PHP_VERSION
+        value: 8.2
+    healthCheckPath: /test.php
+
+  # MySQL Database Service
+  - type: pserv
+    name: brew-haven-db
+    plan: free
+    env: mysql
+    envVars:
+      - key: MYSQL_DATABASE
+        value: brew_haven_db
+      - key: MYSQL_ROOT_PASSWORD
+        generateValue: true

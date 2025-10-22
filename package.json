@@ -1,0 +1,23 @@
+{
+  "name": "brew-haven-spa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:production": "vite build --mode production",
+    "deploy:netlify": "npm run build:production && netlify deploy --prod"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.4.10"
+  }
+}
