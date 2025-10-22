@@ -10,17 +10,17 @@ export default defineConfig({
     // Make environment variables available to the client
     'process.env': process.env
   },
-  build: {
-    // Optimize build for production
-    minify: 'terser',
-    sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom']
+      build: {
+        // Optimize build for production
+        minify: 'esbuild',
+        sourcemap: false,
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              vendor: ['react', 'react-dom'],
+              router: ['react-router-dom']
+            }
+          }
         }
       }
-    }
-  }
 });
