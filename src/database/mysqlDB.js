@@ -1,9 +1,9 @@
 // MySQL Database connection and operations
 class MySQLDatabase {
   constructor() {
-    // Use production API URL for deployed app, fallback to localhost for development
+    // Use relative API URL for Netlify (proxied), full URL for local development
     this.baseURL = window.location.hostname === 'brewhaventabernilla.netlify.app' 
-      ? 'https://brew-haven-backend-1pwd.onrender.com/api'
+      ? '/api'  // Netlify will proxy this to the backend
       : 'http://localhost/LabAct/api';
   }
 

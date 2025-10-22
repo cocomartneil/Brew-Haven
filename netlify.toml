@@ -9,6 +9,13 @@
   # Node.js version
   NODE_VERSION = "18"
 
+# Proxy API requests to backend (must come before React Router redirect)
+[[redirects]]
+  from = "/api/*"
+  to = "https://brew-haven-backend-1pwd.onrender.com/api/:splat"
+  status = 200
+  force = true
+
 # Redirect rules for React Router
 [[redirects]]
   from = "/*"
