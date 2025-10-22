@@ -25,8 +25,8 @@ RUN docker-php-ext-configure pdo_pgsql --with-pdo-pgsql && \
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy PHP files to the web root
-COPY api/ /var/www/html/
+# Copy PHP files maintaining API structure
+COPY api/ /var/www/html/api/
 
 # Copy database setup files
 COPY database_setup_postgresql.sql /var/www/html/
