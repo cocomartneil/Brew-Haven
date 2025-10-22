@@ -76,13 +76,15 @@ try {
     $errorCount = 0;
     $errors = [];
     
-    foreach ($statements as $statement) {
+    foreach ($statements as $index => $statement) {
         try {
-            $pdo->exec($statement);
+            $result = $pdo->exec($statement);
             $successCount++;
+            error_log("Statement $index executed successfully, result: $result");
         } catch (PDOException $e) {
             $errorCount++;
-            $errors[] = $e->getMessage();
+            $errors[] = "Statement $index failed: " . $e->getMessage();
+            error_log("Statement $index failed: " . $e->getMessage());
         }
     }
     
